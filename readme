@@ -1,0 +1,6 @@
+bximage 生成硬盘
+nasm loader.asm -o loader.bin
+dd if=./mbr.bin of=./a.img bs=512 count=1 conv=notrunc
+dd if=./loader.bin of=./a.img bs=512 count=1 seek=2 conv=notrunc
+dd if=./kk/temp/kernel.bin of=./a.img bs=512 count=100 seek=9 conv=notrunc
+bochs -f  ./bochs.config
